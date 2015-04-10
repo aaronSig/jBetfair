@@ -1,4 +1,4 @@
-package com.superpixel.jbetfair;
+package com.jbetfair;
 
 import java.util.List;
 
