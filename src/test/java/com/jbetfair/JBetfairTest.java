@@ -4,11 +4,11 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.jbetfair.JBetfair;
 import com.jbetfair.api.ApiOperation;
 import com.jbetfair.api.entities.MarketBook;
 import com.jbetfair.api.entities.MarketCatalogue;
 import com.jbetfair.api.params.MarketFilter;
+import com.jbetfair.api.params.MarketSort;
 import com.jbetfair.api.responses.EventTypeResult;
 import com.jbetfair.api.responses.ListCompetitionResult;
 import com.jbetfair.api.responses.ListCountriesResult;
@@ -16,26 +16,27 @@ import com.jbetfair.api.responses.ListEventsResult;
 import com.jbetfair.api.responses.ListMarketTypesResult;
 import com.jbetfair.api.responses.ListTimeRangesResult;
 import com.jbetfair.api.responses.ListVenuesResult;
+import com.jbetfair.entities.Runner;
+import com.jbetfair.entities.RunnerCatalog;
 
-public class JBetfairTest 
-extends TestCase {
+public class JBetfairTest extends TestCase {
 
-  private JBetfair betfair = new JBetfair();
+  private JBetfair jBetfair = new JBetfair();
 
   public void testLogin() throws Exception {
     try {
-      betfair.login();
+      jBetfair.login();
     } catch (Exception e) {
       fail();
     }
   }
 
   public void testOperationWithRequests() throws Exception {
-    assertNotNull(betfair.makeRequest(ApiOperation.LIST_EVENT_TYPES, new MarketFilter()));
+    assertNotNull(jBetfair.makeRequest(ApiOperation.LIST_EVENT_TYPES, new MarketFilter()));
   }
 
   public void testListEventTypes() throws Exception {
-    List<EventTypeResult> result = betfair.listEventTypes();
+    List<EventTypeResult> result = jBetfair.listEventTypes();
     assertTrue(result.size() > 0);
     for (EventTypeResult e : result) {
       assertNotNull(e.getEventType().getId());
@@ -45,7 +46,7 @@ extends TestCase {
   }
 
   public void testListCompetitions() throws Exception {
-    List<ListCompetitionResult> result = betfair.listCompetitions();
+    List<ListCompetitionResult> result = jBetfair.listCompetitions();
     assertTrue(result.size() > 0);
     for (ListCompetitionResult c : result) {
       assertNotNull(c.getCompetition().getId());
@@ -56,7 +57,7 @@ extends TestCase {
   }
 
   public void testListTimeRanges() throws Exception {
-    List<ListTimeRangesResult> result = betfair.listTimeRanges();
+    List<ListTimeRangesResult> result = jBetfair.listTimeRanges();
     assertTrue(result.size() > 0);
     for (ListTimeRangesResult t : result) {
       assertNotNull(t.getMarketCount());
@@ -66,7 +67,7 @@ extends TestCase {
   }
 
   public void testListEvents() throws Exception {
-    List<ListEventsResult> result = betfair.listEvents();
+    List<ListEventsResult> result = jBetfair.listEvents();
     assertTrue(result.size() > 0);
     for (ListEventsResult e : result) {
       assertNotNull(e.getMarketCount());
@@ -78,7 +79,7 @@ extends TestCase {
   }
 
   public void testListMarketTypes() throws Exception {
-    List<ListMarketTypesResult> result = betfair.listMarketTypes();
+    List<ListMarketTypesResult> result = jBetfair.listMarketTypes();
     assertTrue(result.size() > 0);
     for (ListMarketTypesResult m : result) {
       assertNotNull(m.getMarketCount());
@@ -87,7 +88,7 @@ extends TestCase {
   }
 
   public void testListCountries() throws Exception {
-    List<ListCountriesResult> result = betfair.listCountries();
+    List<ListCountriesResult> result = jBetfair.listCountries();
     assertTrue(result.size() > 0);
     for (ListCountriesResult c : result) {
       assertNotNull(c.getMarketCount());
@@ -96,7 +97,7 @@ extends TestCase {
   }
 
   public void testListVenues() throws Exception {
-    List<ListVenuesResult> result = betfair.listVenues();
+    List<ListVenuesResult> result = jBetfair.listVenues();
     assertTrue(result.size() > 0);
     for (ListVenuesResult v : result) {
       assertNotNull(v.getMarketCount());
@@ -105,7 +106,7 @@ extends TestCase {
   }
 
   public void testListMarketCatalogue() throws Exception {
-    List<MarketCatalogue> result = betfair.listMarketCatalogue();
+    List<MarketCatalogue> result = jBetfair.listMarketCatalogue();
     assertTrue(result.size() > 0);
     for (MarketCatalogue c : result) {
       assertNotNull(c.getMarketId());
@@ -118,8 +119,8 @@ extends TestCase {
   }
 
   public void testListMarketBook() throws Exception {
-    List<MarketCatalogue> catalogue = betfair.listMarketCatalogue(new MarketFilter(), 1);    
-    List<MarketBook> result = betfair.listMarketBook(catalogue.get(0).getMarketId());
+    List<MarketCatalogue> catalogue = jBetfair.listMarketCatalogue(new MarketFilter(), 1);
+    List<MarketBook> result = jBetfair.listMarketBook(catalogue.get(0).getMarketId());
     assertTrue(result.size() > 0);
     for (MarketBook b : result) {
       assertNotNull(b.getMarketId());
