@@ -3,6 +3,7 @@ package com.jbetfair.api.params;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
+import com.jbetfair.api.entities.EventTypes;
 import com.jbetfair.entities.TimeRange;
 import com.jbetfair.enums.MarketBettingType;
 import com.jbetfair.enums.OrderStatus;
@@ -71,6 +72,11 @@ public class MarketFilter implements APIRequestParam {
 
   public MarketFilter withEventTypeId(int eventTypeId) {
     this.eventTypeIds = ImmutableSet.of(Integer.toString(eventTypeId));
+    return this;
+  }
+  
+  public MarketFilter withEventType(EventTypes eventType) {
+    this.eventTypeIds = ImmutableSet.of(Integer.toString(eventType.getId()));
     return this;
   }
 
@@ -179,6 +185,11 @@ public class MarketFilter implements APIRequestParam {
     return this;
   }
 
+  public MarketFilter withMarketBettingType(MarketBettingType marketBettingType) {
+    this.marketBettingTypes = ImmutableSet.of(marketBettingType);
+    return this;
+  }
+
   public Set<String> getMarketCountries() {
     return marketCountries;
   }
@@ -191,7 +202,7 @@ public class MarketFilter implements APIRequestParam {
     this.marketCountries = marketCountries;
     return this;
   }
-  
+
   public MarketFilter withMarketCountry(String marketCountry) {
     this.marketCountries = ImmutableSet.of(marketCountry);
     return this;
@@ -207,6 +218,11 @@ public class MarketFilter implements APIRequestParam {
 
   public MarketFilter withMarketTypeCodes(Set<String> marketTypeCodes) {
     this.marketTypeCodes = marketTypeCodes;
+    return this;
+  }
+
+  public MarketFilter withMarketTypeCode(String marketTypeCode) {
+    this.marketTypeCodes = ImmutableSet.of(marketTypeCode);
     return this;
   }
 

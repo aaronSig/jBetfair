@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -532,6 +533,19 @@ public class JBetfair {
    * the status of any orders you have placed in the market.
    * 
    * @param marketIds
+   * @return
+   * @throws BetfairException
+   */
+  public List<MarketBook> listMarketBook(Collection<String> marketIds) throws BetfairException {
+    return listMarketBook(marketIds, PriceProjection.defaultPriceProjection(), OrderProjection.ALL, MatchProjection.NO_ROLLUP);
+  }
+
+  /***
+   * Returns a list of dynamic data about markets. Dynamic data includes prices,
+   * the status of the market, the status of selections, the traded volume, and
+   * the status of any orders you have placed in the market.
+   * 
+   * @param marketIds
    *          One or more market ids. The number of markets returned depends on
    *          the amount of data you request via the price projection.
    * @param priceProjection
@@ -543,7 +557,7 @@ public class JBetfair {
    * @return
    * @throws BetfairException
    */
-  public List<MarketBook> listMarketBook(List<String> marketIds, PriceProjection priceProjection, OrderProjection orderProjection,
+  public List<MarketBook> listMarketBook(Collection<String> marketIds, PriceProjection priceProjection, OrderProjection orderProjection,
       MatchProjection matchProjection) throws BetfairException {
     if (marketIds == null || marketIds.size() == 0) {
       throw new IllegalArgumentException("At least 1 market ID is required");

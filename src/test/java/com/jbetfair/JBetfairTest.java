@@ -8,7 +8,6 @@ import com.jbetfair.api.ApiOperation;
 import com.jbetfair.api.entities.MarketBook;
 import com.jbetfair.api.entities.MarketCatalogue;
 import com.jbetfair.api.params.MarketFilter;
-import com.jbetfair.api.params.MarketSort;
 import com.jbetfair.api.responses.EventTypeResult;
 import com.jbetfair.api.responses.ListCompetitionResult;
 import com.jbetfair.api.responses.ListCountriesResult;
@@ -16,8 +15,6 @@ import com.jbetfair.api.responses.ListEventsResult;
 import com.jbetfair.api.responses.ListMarketTypesResult;
 import com.jbetfair.api.responses.ListTimeRangesResult;
 import com.jbetfair.api.responses.ListVenuesResult;
-import com.jbetfair.entities.Runner;
-import com.jbetfair.entities.RunnerCatalog;
 
 public class JBetfairTest extends TestCase {
 

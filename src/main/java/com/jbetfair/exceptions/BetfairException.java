@@ -1,5 +1,6 @@
 package com.jbetfair.exceptions;
 
+
 public class BetfairException extends Exception {
   private static final long serialVersionUID = 62956855946788584L;
 
@@ -21,6 +22,23 @@ public class BetfairException extends Exception {
     this.errorCode = errorCode;
     this.errorDetails = errorDetails;
     this.requestUUID = requestUUID;
+  }
+
+  @Override
+  public String getMessage() {
+    StringBuffer buffer = new StringBuffer();
+    if (super.getMessage() != null) {
+      buffer.append(super.getMessage());
+      buffer.append(" ");
+    }
+    if (errorDetails != null) {
+      buffer.append(errorDetails);
+      buffer.append(" ");
+    }
+    if (errorCode != null) {
+      buffer.append(errorCode);
+    }
+    return super.getMessage() + " " + errorDetails + " " + errorCode;
   }
 
   public String getErrorDetails() {
