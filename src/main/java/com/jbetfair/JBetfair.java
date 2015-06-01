@@ -435,7 +435,7 @@ public class JBetfair {
    * @throws BetfairException
    */
   public List<MarketCatalogue> listMarketCatalogue(MarketFilter filter, int maxResults) throws BetfairException {
-    return this.listMarketCatalogue(new MarketFilter(), MarketProjection.allProjections(), MarketSort.MAXIMUM_TRADED, maxResults);
+    return this.listMarketCatalogue(filter, MarketProjection.allProjections(), MarketSort.MAXIMUM_TRADED, maxResults);
   }
 
   /***
